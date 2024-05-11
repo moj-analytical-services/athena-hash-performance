@@ -1,0 +1,11 @@
+athena_hash_performance:
+  outputs:
+    dev:
+      database: awsdatacatalog
+      region_name: eu-west-1
+      s3_data_dir: s3://dbt-tables-sandbox/
+      s3_staging_dir: s3://dbt-query-dump-sandbox/athena-hash-performance/
+      schema: athena_hash_performance
+      threads: 4
+      type: athena
+  target: dev

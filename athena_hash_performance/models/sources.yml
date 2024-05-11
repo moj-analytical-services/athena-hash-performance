@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: tpcds
+    schema: tpcds_{{ var("scale") }}
+    tables:
+      - name: store_sales

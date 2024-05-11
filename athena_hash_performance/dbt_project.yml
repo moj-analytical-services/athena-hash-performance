@@ -1,0 +1,16 @@
+name: 'athena_hash_performance'
+version: '1.0.0'
+profile: 'athena_hash_performance'
+
+model-paths: ["models"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  scale: '1'
+
+models:
+  athena_hash_performance:
+    +materialized: view
