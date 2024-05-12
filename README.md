@@ -15,7 +15,11 @@ dbt run --vars '{"tpcds_scale":"500"}'
 Results:
 
 created sql table model athena_hash_performance.store_sales .......... [OK 1439979468 in 626.21s]
-created sql table model athena_hash_performance.store_sales_dedupe ... [OK 1439978468 in 744.31s]
+created sql view model athena_hash_performance.store_sales_hash ...... [OK -1 in 3.05s]
+created sql table model athena_hash_performance.store_sales_string_pk  [OK 1439979468 in 662.35s]
 created sql table model athena_hash_performance.store_sales_hash_precalculated  [OK 1439979468 in 744.22s]
+
+created sql table model athena_hash_performance.store_sales_dedupe ... [OK 1439978468 in 744.31s]
 created sql table model athena_hash_performance.store_sales_dedupe_hash  [OK 1439978468 in 858.69s]
 created sql table model athena_hash_performance.store_sales_dedupe_hash_precalculated  [OK 1439978468 in 865.41s]
+created sql table model athena_hash_performance.store_sales_dedupe_string_pk  [OK 1439978468 in 784.73s]
