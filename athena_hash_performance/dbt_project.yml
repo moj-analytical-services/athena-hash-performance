@@ -9,7 +9,7 @@ clean-targets:
   - "dbt_packages"
 
 vars:
-  scale: '1'
+  tpcds_scale: 1
 
 models:
   athena_hash_performance:
