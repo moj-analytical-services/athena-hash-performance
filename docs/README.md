@@ -16,21 +16,21 @@ Metrics obtained when using scale = 500
 
 ### Staging Tables:
 
-| Model | Rows | Runtime | Notes | 
-|-|-|-|-|
-|store_sales| 1,439,979,468 |626.21s| Creates a table with some duplicates|
-|store_sales_hash|-|-|Creates view with hash|
-|store_sales_string_pk|1,439,979,468|662.35s|Converts integer PKs to string|
-|store_sales_hash_precalculated |1,439,979,468 |744.22s|Creates table with hash|
+| Model | Rows | Runtime | Notes | Execution Time | Data Scanned (GB)|
+|-|-|-|-|-|-|
+|store_sales| 1,439,979,468 |622.21s| Creates a table with some duplicates|Stage 0: 3,106s, Stage 1: 11,532s|57.34|
+|store_sales_hash|-|-|Creates view with hash|-|-|
+|store_sales_string_pk|1,439,979,468|658.04s|Converts integer PKs to string|Stage 0: 54m 46s, Stage 1: 8h 13m 48s, Stage 2: 15h 55m 48s|48.1|
+|store_sales_hash_precalculated |1,439,979,468 |750.95s|Creates table with hash|Stage 0: 1h 2m 24s, Stage 1: 12h 45m 36s, Stage 2: 22h 38m 24s|48.1|
 
 ### Deduping
 
-| Model | Rows | Runtime | Notes | 
-|-|-|-|-|
-|store_sales_dedupe|1,439,978,468|744.31s|Deduplicates `store_sales` using primary keys|
-|store_sales_dedupe_hash|1,439,978,468|858.69s|Deduplicates `store_sales` using dynamic hash|
-|store_sales_dedupe_hash_precalculated|1,439,978,468|865.41s|Deduplicates `store_sales_hash_precalculated` using pre-calculated hash|
-|store_sales_dedupe_string_pk|1,439,978,468|784.73s|Deduplicates `store_sales_string_pk` using string primary keys|
+| Model | Rows | Runtime | Notes | Execution Time | Data Scanned |
+|-|-|-|-|-|-|
+|store_sales_dedupe|1,439,978,468|736.262s|Deduplicates `store_sales` using primary keys|Stage 0: 1h 1m 12s, Stage 1: 12h 4m 48s, Stage 2: 23m 26s, Stage 3: 22h 14m, 24s|48.1|
+|store_sales_dedupe_hash|1,439,978,468|863.91s|Deduplicates `store_sales` using dynamic hash|Stage 0: 1h, 12m 0s, Stage 1: 18h 25m 48s, Stage 2: 8h 41m 33s, Stage 3: 13h 10m 48s|48.1|
+|store_sales_dedupe_hash_precalculated|1,439,978,468|855.33s|Deduplicates `store_sales_hash_precalculated` using pre-calculated hash|Stage 0: 1h 11m 24s, Stage 1: 17h 49m 12s, Stage 2: 8h 26m 8s, Stage 3: 23h 51m|75|
+|store_sales_dedupe_string_pk|1,439,978,468|792.53s|Deduplicates `store_sales_string_pk` using string primary keys|Stage 0: 1h 6m 0s, Stage 1: 14h 40m 48s, Stage 2: 4h 10m 1s, Stage 3: 1h 13m 48s|48.1|
 
 ![dag](dag.png)
 
